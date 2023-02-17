@@ -41,6 +41,8 @@ export interface ParameterType {
   description?: string
   example?: string | number | boolean
   required?: boolean
+  minimum?: number // minimum numeric value or string length
+  maximum?: number // maximum numeric value or string length
 }
 
 export interface StringParameterType extends ParameterType {

@@ -28,6 +28,8 @@ export class BaseParameter {
       description: this.params.description,
       example: this.params.example,
       default: this.params.default,
+      minimum: this.params.minimum,
+      maximum: this.params.maximum
     }
   }
 
@@ -145,6 +147,18 @@ export class Num extends BaseParameter {
       throw new ValidationError('is not a valid number')
     }
 
+    if (this.params.minimum) {
+      if (value < this.params.minimum) {
+        throw new ValidationError(`minimum value is ${this.params.minimum} but ${value} encountered`)
+      }
+    }
+
+    if (this.params.maximum) {
+      if (value > this.params.maximum) {
+        throw new ValidationError(`maximum value is ${this.params.maximum} but ${value} encountered`)
+      }
+    }
+
     return value
   }
 }
@@ -178,6 +192,18 @@ export class Str extends BaseParameter {
 
     if (typeof value !== 'string') {
       value = value.toString()
+    }
+
+    if (this.params.minimum) {
+      if (value.length < this.params.minimum) {
+        throw new ValidationError(`minimum length is ${this.params.minimum} but ${value} encountered`)
+      }
+    }
+
+    if (this.params.maximum) {
+      if (value.length > this.params.maximum) {
+        throw new ValidationError(`maximum length is ${this.params.maximum} but ${value} encountered`)
+      }
     }
 
     if (this.params.format) {
@@ -264,6 +290,34 @@ export class Email extends Regex {
       patternError: 'email',
       ...params,
       format: 'email',
+    })
+  }
+}
+
+export class Base64 extends Regex {
+  type = 'string'
+  public declare params: RegexParameterType
+
+  constructor(params?: StringParameterType) {
+    super({
+      pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$',
+      patternError: 'base64',
+      ...params,
+      format: 'base64',
+    })
+  }
+}
+
+export class Lax64 extends Regex { // lax base64 (optional trailing)
+  type = 'string'
+  public declare params: RegexParameterType
+
+  constructor(params?: StringParameterType) {
+    super({
+      pattern: '^[a-zA-Z0-9+/]*=?$',
+      patternError: 'lax64',
+      ...params,
+      format: 'lax64',
     })
   }
 }

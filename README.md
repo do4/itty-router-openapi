@@ -146,6 +146,7 @@ All of theses Types can be imported like `import { Email } from '@cloudflare/itt
 | `Bool`        |               `description` `example` `default`                |
 | `Regex`       |   `description` `example` `default` `pattern` `patternError`   |
 | `Email`       |               `description` `example` `default`                |
+| `Base64`      |               `description` `example` `default`                |
 | `Uuid`        |               `description` `example` `default`                |
 | `Hostname`    |               `description` `example` `default`                |
 | `Ipv4`        |               `description` `example` `default`                |
