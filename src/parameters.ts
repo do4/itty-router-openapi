@@ -29,7 +29,7 @@ export class BaseParameter {
       example: this.params.example,
       default: this.params.default,
       minimum: this.params.minimum,
-      maximum: this.params.maximum
+      maximum: this.params.maximum,
     }
   }
 
@@ -308,7 +308,8 @@ export class Base64 extends Regex {
   }
 }
 
-export class Lax64 extends Regex { // lax base64 (optional trailing)
+export class Lax64 extends Regex {
+  // lax base64 (optional trailing)
   type = 'string'
   public declare params: RegexParameterType
 
@@ -421,7 +422,7 @@ export class Enumeration extends Str {
   constructor(params: EnumerationParameterType) {
     super(params)
 
-    let {values} = params
+    let { values } = params
     if (Array.isArray(values)) values = Object.fromEntries(values.map((x) => [x, x]))
     this.keys = Object.keys(values)
     this.values = values

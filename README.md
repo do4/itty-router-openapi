@@ -23,7 +23,6 @@ with a live demo [here](https://worker-openapi-example.radar.cloudflare.com/docs
 npm i github:do4/itty-router-openapi --save
 ```
 
-
 aliases: npm i, npm add
 common options: [-P|--save-prod|-D|--save-dev|-O|--save-optional] [-E|--save-exact] [-B|--save-bundle] [--no-save] [--dry-run]
 

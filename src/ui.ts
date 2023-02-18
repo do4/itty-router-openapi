@@ -24,7 +24,6 @@ export const SwaggerUI = `<!DOCTYPE html>
 </body>
 </html>`
 
-
 export const ReDocUI = `<!DOCTYPE html>
 <html><head>
 <title>ReDocUI</title>
